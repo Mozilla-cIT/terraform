@@ -26,6 +26,5 @@ resource "aws_instance" "ansible" {
   }
   vpc_security_group_ids = ["${aws_security_group.ansible.id}"]
   key_name = "tanner"
-  availability_zone = "us-east-1b"
-  subnet_id = "${var.production-subnets.us-east-1b-public}"
+  subnet_id = "${var.production-subnets.us-east-1b}"
 }
