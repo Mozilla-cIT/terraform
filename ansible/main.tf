@@ -7,4 +7,9 @@ provider "aws" {
 resource "aws_instance" "ansible" {
   ami = "ami-d05e75b8" # This is the Ubuntu 14.04 hvm image
   instance_type = "t2.micro"
+  tags = {
+    app = "ansible"
+    env = "production"
+  }
+  vpc_security_group_ids = ["${lookup(aws_security_group.ansible.id)}"]
 }
