@@ -12,4 +12,5 @@ resource "aws_instance" "ansible" {
     env = "production"
   }
   vpc_security_group_ids = ["${lookup(aws_security_group.ansible.id)}"]
+  key_name = "tanner"
 }
