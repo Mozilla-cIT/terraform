@@ -15,6 +15,7 @@ resource "aws_security_group" "jenkins" {
     protocol = "tcp"
     cidr_blocks = ["10.0.0.0/8","134.161.0.0/16","86.2.35.229/32"]
     # IPs: Internal, tanner, yousef
+    # TODO: Find a better way to handle multiple ranges - look at other security group thing
   }
 }
 
@@ -25,7 +26,7 @@ resource "aws_instance" "jenkins" {
     app = "jenkins"
     env = "production"
   }
-  vpc_security_group_ids = ["${aws_security_group.ansible.id}"]
+  vpc_security_group_ids = ["${aws_security_group.jenkins.id}"]
   key_name = "tanner"
   subnet_id = "${var.production-subnets.us-east-1b}"
 }
