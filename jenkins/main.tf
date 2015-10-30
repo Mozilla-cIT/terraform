@@ -29,4 +29,7 @@ resource "aws_instance" "jenkins" {
   vpc_security_group_ids = ["${aws_security_group.jenkins.id}"]
   key_name = "tanner"
   subnet_id = "${var.production-subnets.us-east-1b}"
+  lifecycle {
+    create_before_destroy = true
+  }
 }
